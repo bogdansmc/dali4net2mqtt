@@ -1,3 +1,4 @@
 #!/usr/bin/with-contenv bashio
 
-node index.js
+cd /app
+node ./index.js

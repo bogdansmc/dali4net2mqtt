@@ -1,6 +1,6 @@
 {
   "name": "Dali4net2MQTT",
-  "version": "0.03",
+  "version": "0.05",
   "slug": "dali4net2mqtt",
   "description": "This is Lunatone DALI 4Net module to MQTT for Home Assistant addon",
   "arch": ["armhf", "armv7", "aarch64", "amd64", "i386"],

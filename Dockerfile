@@ -15,5 +15,5 @@ COPY index.js ./
 
 RUN ./build.sh
 
-CMD [ "/run.sh" ]
+CMD [ "/app/run.sh" ]
 
