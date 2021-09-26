@@ -30,20 +30,26 @@ class Log {
         this.error = this.error.bind(this);
         this.warn  = this.warn.bind(this);
     }
+    getDate() {
+	    let dt = new Date();
+//	    return dt.toISOString();
+//	    return dt.toLocaleTimeString();
+	    return dt.toLocaleString('en-GB');
+    }
     silly(msg) {
-	    console.log("silly: " + msg);
+	    console.log(this.getDate()+" [silly] " + msg);
     }
     debug(msg) {
-//	    console.log("debug: " + msg);
+//	    console.log(this.getDate()+" [debug] " + msg);
     }
     info(msg) {
-	    console.log("info: " + msg);
+	    console.log(this.getDate()+" [info] " + msg);
     }
     error(msg) {
-	    console.log("error: " + msg);
+	    console.log(this.getDate()+" [error] " + msg);
     }
     warn(msg) {
-	    console.log("warn: " + msg);
+	    console.log(this.getDate()+" [warn] " + msg);
     }
 }
 
@@ -113,7 +119,7 @@ class Controller {
     }
     
     async onMqttError(error) {
-        console.log("Mqtt Can't connect" + error);
+        this.log.info("Mqtt Can't connect" + error);
     }
     
     genHaConfig(name, path) {
