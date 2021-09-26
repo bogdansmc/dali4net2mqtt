@@ -5,54 +5,10 @@ const dali = require('./lib/dali');
 const lib = require('./lib/devicelist');
 const mqtt = require('mqtt');
 const tools = require('./lib/tools.js');
+const logger = require('./lib/logger.js');
 
 const mqtt_base_topic = "homeassistant";
 const dali_base_topic = "dali.0";
-
-class Log {
-    /**
-     * @param {string} namespaceLog Logging namespace to prefix
-     * @param {string} level The log level
-     * @param {object} logger logger instance
-     */
-    constructor(namespaceLog, level, logger) {
-        this.namespaceLog = namespaceLog;
-        this.level = level;
-        // We have to bind the this context here or it is possible that `this` is
-        // undefined when passing around the logger methods. This happens e.g. when doing this:
-        //   const log = new Log(...);
-        //   const test = log.info;
-        //   test();
-        this.logger = logger;
-        this.silly = this.silly.bind(this);
-        this.debug = this.debug.bind(this);
-        this.info  = this.info.bind(this);
-        this.error = this.error.bind(this);
-        this.warn  = this.warn.bind(this);
-    }
-    getDate() {
-	    let dt = new Date();
-//	    return dt.toISOString();
-//	    return dt.toLocaleTimeString();
-	    return dt.toLocaleString('en-GB');
-    }
-    silly(msg) {
-	    console.log(this.getDate()+" [silly] " + msg);
-    }
-    debug(msg) {
-//	    console.log(this.getDate()+" [debug] " + msg);
-    }
-    info(msg) {
-	    console.log(this.getDate()+" [info] " + msg);
-    }
-    error(msg) {
-	    console.log(this.getDate()+" [error] " + msg);
-    }
-    warn(msg) {
-	    console.log(this.getDate()+" [warn] " + msg);
-    }
-}
-
 
 class Controller {
     constructor(options) {
@@ -65,7 +21,7 @@ class Controller {
 	    bus3: false
 	};
 	
-	this.log = new Log(1,2,3);
+	this.log = new logger(1,2,3);
 	this.namespace = dali_base_topic; //"dali.0";
 	
 	// mqtt
