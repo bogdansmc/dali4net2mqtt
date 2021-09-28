@@ -131,6 +131,7 @@ class Controller {
 	
         this.device = new dali(this, this.config.host, this.config.port, 
             this.config.bus0, this.config.bus1, this.config.bus2, this.config.bus3);
+        this.device.connect();
 
         if(this.config.bus0) {
             let dl0 = await this.device.startSearch(0);
